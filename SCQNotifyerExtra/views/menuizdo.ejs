@@ -1,0 +1,98 @@
+<div class="sb-sidenav-menu">
+    <div class="nav">
+        <div class="sb-sidenav-menu-heading">Inicio</div>
+        <a class="nav-link" href="/info">
+            <div class="sb-nav-link-icon"><i class="fas fa-info"></i></div>Info Proyecto
+        </a>
+        <a class="nav-link" href="/incidencias">
+            <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>Listado Incidencias
+        </a>
+        <a class="nav-link" href="/mapa">
+            <div class="sb-nav-link-icon"><i class="fas fa-globe-europe"></i></div>Mapa de Incidencias
+        </a>
+        <a class="nav-link" href="/meteo">
+            <div class="sb-nav-link-icon"><i class="fas fa-cloud-sun"></i></div>Méteo
+        </a>
+
+        <% if (cliente == null) { %>
+        <a class="nav-link" href="/login">
+            <div class="sb-nav-link-icon"><i class="fas fa-sign-in-alt"></i></div>Acceso
+        </a>
+        <% } else { %>
+        <div class="sb-sidenav-menu-heading">Menú privado</div>
+
+        <a class="nav-link" href="/misincidencias">
+            <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>Mis Incidencias (editar/borrar)
+        </a>
+        <a class="nav-link" href="/perfil">
+            <div class="sb-nav-link-icon"><i class="fas fa-id-card"></i></div>Perfil (cancel account)
+        </a>
+        <a class="nav-link" href="/infotelegram">
+            <div class="sb-nav-link-icon"><i class="fab fa-telegram"></i></div>Datos Telegram
+        </a>
+        <a class="nav-link" href="/desconectar">
+            <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>Desconectar
+        </a>
+        <br />
+        <div class="sb-sidenav-menu-heading">Menú del administrador</div>
+        <a class="nav-link" href="/resolverIncidencias" onclick="return contrasenaAdmin(event);" )>
+            <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>Resolver Incidencias
+        </a>
+        <a class="nav-link" href="/altaAyuntamientos" onclick="return contrasenaAdmin(event);" )>
+            <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>Alta ayuntamientos
+        </a>
+        <div class="sb-sidenav-menu-heading">Menú del agente</div>
+        <a class="nav-link" href="/resolverIncAgente">
+            <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>Incidencias del ayuntamiento
+        </a>
+        <% } %>
+    </div>
+</div>
+
+<% if (cliente !== null) { %>
+<div class="sb-sidenav-footer">
+    <div class="small">Usted está conectado/a como: <%-cliente.first_name+" "+cliente.last_name%> (via Telegram).</div>
+</div>
+<% } else { %>
+<div class="sb-sidenav-footer">
+    <div class="small">No hay ningún usuario conectado</div>
+</div>
+<% } %>
+
+<script>
+    function contrasenaAdmin(event) {
+        event.preventDefault();
+        var prompt = window.open("", "",  `resizable=no, width=500, height=200`);
+        var html = "";
+        html += '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">'
+        html += "<div style='text-align: center'>"
+        html += "<p>El servidor requiere una contraseña de administrador para acceder a esta sección. Por favor, introdúzcala: </p>";
+        html += "<br/>";
+        html += "Password: <input type='password' id='password' placeholder='Enter Password...'/>";
+        html += "<p></p>";
+        html += "<input  class='btn btn-success' type='button' value='Continuar' id='continuarButton' style = 'width: 200px'/>";
+        html += "    ";
+        html += "<input  class='btn btn-dark' type='button' value='Cancelar' id='cancelarButton' style = 'width: 200px'/>";
+        html += "</div>";
+        prompt.document.body.innerHTML = html;
+
+        var password = prompt.document.getElementById("password").value;
+
+        prompt.document.getElementById("continuarButton").onclick = function () {
+            console.log("CLICKADO");
+            if (prompt.document.getElementById("password").value == "soyAdmin") {
+                prompt.close();
+                location.href = event.target.href;
+                return true;
+            } else {
+                alert("La contraseña introducida no es correcta.");
+                prompt.close();
+                return false;
+            }
+        }
+
+        prompt.document.getElementById("cancelarButton").onclick = function () {
+            prompt.close();
+        }
+    }
+</script>

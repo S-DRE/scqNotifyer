@@ -1,0 +1,4 @@
+// INCIDENCIAS.JS ----
+$(document).ready(() => {
+
+});

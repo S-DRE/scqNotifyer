@@ -1,0 +1,69 @@
+<% layout('layout') -%>
+<div class="container-fluid">
+    <h1 class="mt-4"></h1>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card text-center">
+                <div class="card-header">
+                    <i class="fas fa-info-circle fa-2x"></i><strong>Resolución de incidencias</strong>
+                </div>
+                <style>
+                    td {
+                        width: 150px;
+                    }
+                </style>
+                <div class="card-body">
+                    <h5 class="card-title">Incidencias</h5>
+                    <!-- <p class="card-text">retaíla de datos</p> -->
+                    <% if(datos.length > 0) {%>
+                    <table class="table table-hover table-responsive-xl">
+                        <thead>
+                            <tr class="info">
+                                <th>Usuario</th>
+                                <th>Texto de la incidencia</th>
+                                <th>Fotografía</th>
+                                <th>Ubicación</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th>Opciones de administrador</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% for(var i = 0; i < datos.length; i+=2) {%>
+                            <% if(datos[i].resuelta == false) {%>
+                            <tr>
+                                <td>
+                                    <p style="font-weight: bold;"><%-datos[i+1]%></p>
+                                </td>
+                                <td><%-datos[i].texto_inc%></td>
+                                <td><img src="../descargas/<%-datos[i].foto.split("descargas/")[1]%>"
+                                        width="325px" height="200px"></td>
+                                <td><%-datos[i].latitud%>, <%-datos[i].longitud%></td>
+                                <td><%-datos[i].fecha%></td>
+                                <td><% if(datos[i].resuelta) { %>
+                                    <p style="color: green;">Resuelta</p>
+                                </td>
+                                <% } else { %>
+                                <p style="color: darkred;">Pendiente de resolver</p>
+                                </td>
+                                <td><input class="resolverIncidenciaButton"
+                                        onclick="window.location='/formularioResolucion?id=<%-datos[i]._id%>';"
+                                        type="button" value="Resolver"></td>
+                                <% } %>
+
+                            </tr>
+                            <%}%>
+                            <%}%>
+
+
+                        </tbody>
+                    </table>
+                    <% } else { %>
+                    <p>No hay incidencias disponibles ahora mismo.</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

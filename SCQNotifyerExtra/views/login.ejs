@@ -1,0 +1,47 @@
+<% layout('layout') -%>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card text-center">
+
+                <div class="card-header">
+                    <i class="fas fa-sign-in-alt fa-2x"></i><strong> Acceso a SCQ Notifyer</strong>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Autenticación con Telegram <i class="fab fa-telegram fa-2x"></i></h5>
+                    <p class="card-text">La autorización de acceso a esta web es a través de <b><a
+                                href="https://www.telegram.org/" target="_blank">Telegram</a></b>.</p>
+                    <p class="card-text">Por lo tanto necesitará tener instalado Telegram en su dispositivo móvil, PC,
+                        tablet, etc..</p>
+                    <p class="card-text">para poder acceder a esta web.</p>
+                    <p class="card-text">
+                        <script async src="https://telegram.org/js/telegram-widget.js?7"
+                            data-telegram-login="averohquieresfuncionarbot" data-size="large" data-onauth="onTelegramAuth(user)"
+                            data-request-access="write"></script>
+                        <script type="text/javascript">
+                            function onTelegramAuth(user) {
+                                $.post("/login", user, function(resultado) {
+                                    if (resultado.status == "ok") {
+                                        alert("Sesión creada");
+                                        document.location = "/";
+                                    } else {
+                                        alert("El estado devuelto no es OK");
+                                    }
+                                });
+                                console.log("Usuario");
+                                console.log(user);
+
+                                // Proceso de comprobar si el usuario está o no en la base de datos.
+                                // Si no está se da de alta en la base de datos.
+                                // Crear variable de sesión para ese usuario y mandar a la ruta /
+
+                                // alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
+                            }
+                        </script>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

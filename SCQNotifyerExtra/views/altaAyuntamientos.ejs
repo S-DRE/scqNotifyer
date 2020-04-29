@@ -1,0 +1,33 @@
+<% layout('layout') -%>
+<% script("js/altaAyuntamientos.js")%>
+<br/>
+<br/>
+<div class="container" style="width: 100%; align-content: center;">
+    <form id = "formularioAltasAyun" class="my-2 my-lg-0 text-center" style="align-content: center;" enctype="multipart/form-data" method="post">
+
+        <h3>Alta de ayuntamientos</h3>
+
+        <div class="form-row mb-4">
+            <input type = "text" class="form-control" id="nombreAyuntamiento" name="nombreAyuntamiento" placeholder="Nombre del ayuntamiento"
+                maxlength="100" required>
+        </div>
+        <div class="form-row mb-4">
+            <input class="form-control" type = "email" id="emailAyuntamiento" name="emailAyuntamiento" placeholder="Email del ayuntamiento"
+                maxlength="100" required>
+        </div>
+        <div class="form-row mb-4">
+            <input class="form-control" type = "text" id="nombreMunicipio" name="nombreMunicipio" placeholder="Nombre del municipio al que pertenece"
+                maxlength="100" required>
+        </div>
+        <div class="form-row mb-4">
+            <input class="form-control" type = "password" id="codigoRegistroAgentes" name="codigoRegistroAgentes" placeholder="Código para el registro de los agentes"
+                maxlength="100" required>
+        </div>
+        <div class="form-row mb-4">
+            <input class="form-control" type = "text" id="codigoINE" name="codigoINE" placeholder="Código INE"
+                maxlength="100" required>
+        </div>
+
+        <button class="btn btn-info my-4 btn-block" type="submit">Dar de alta el ayuntamiento</button>
+    </form>
+</div>

@@ -1,0 +1,58 @@
+<% layout('layout') -%>
+
+<div class="container-fluid">
+    <h1 class="mt-4"></h1>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    <i class="fas fa-info-circle fa-2x"></i><strong> EDICIÓN DEL PERFIL</strong>
+                    <br />
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="nombre">Nombre</span>
+                            <input type="text" class="form-control" value = "<%-session.cliente.first_name%>">
+                            <span class="input-group-text" id="apellidos">Apellidos</span>
+                            <input type="text" class="form-control" value = "<%-session.cliente.last_name%>">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="username">Nombre de usuario</span>
+                            <input type="text" class="form-control" placeholder="@Username" width="300px" value = "<%-session.cliente.username%>">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <div class="input-group-prepend col-xs-7">
+                            <span class="input-group-text" id="email">Email</span>
+                            <input type="text" class="form-control" placeholder="email@serviciodemail.extension"
+                                width="300px" value = "<%-session.cliente.email%>">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-text" id="notificaciones">Notificaciones: </span>
+                        <%if(cliente.notificar) {%>
+                        - Si: <div class="radio"><input type="radio" id="notifSi" name="radioNotificaciones" checked> -
+                            No:
+                            <input type="radio" id="notifNo" name="radioNotificaciones">
+                        </div>
+                        <%} else {%>
+                        - Si: <div class="radio"><input type="radio" id="notifSi" name="radioNotificaciones"> - No:
+                            <input type="radio" id="NotifNo" name="radioNotificaciones" checked>
+                        </div>
+                        <%}%>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-dark" href="/editar" role="button">Confirmar cambios</a>
+                    <a class="btn btn-danger" href="/cancelarCuenta" role="button">Cancelar cambios (antes de que sea demasiado tarde)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

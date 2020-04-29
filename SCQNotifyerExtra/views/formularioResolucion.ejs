@@ -1,0 +1,17 @@
+<% layout('layout') -%>
+<% script("js/formularioResolucion.js")%>
+<br/>
+<br/>
+<div class="container" style="width: 100%; align-content: center;">
+    <form id = "formularioResolucion" class="my-2 my-lg-0 text-center" style="align-content: center;" enctype="multipart/form-data" method="post">
+
+        <h3>Resolver incidencias</h3>
+
+        <div class="form-row mb-4">
+            <textarea class="form-control" id="textoResolucion" name="textoResolucion" placeholder="Texto de resolución"
+                maxlength="2000" required></textarea>
+        </div>
+
+        <button class="btn btn-info my-4 btn-block" type="submit">Resolver incidencia</button>
+    </form>
+</div>

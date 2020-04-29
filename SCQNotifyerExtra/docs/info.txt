@@ -1,0 +1,52 @@
+// Documentación de plantilla EJS
+https://ejs.co/
+
+// Iconos para opciones de menú en:
+https://fontawesome.com/icons?d=gallery
+
+// EJS Blocks
+https://www.npmjs.com/package/ejs-blocks
+
+// Sesiones
+https://www.js-tutorials.com/nodejs-tutorial/nodejs-session-example-using-express-session/
+
+// Al trabajar con sesiones tenemos acceso directo desde la plantilla EJS a las variables globales que hagamos en router o el controlador.
+
+// Módulos a instalar
+npm install --production --save body-parser bootstrap cookie-parser dotenv ejs ejs-blocks express express-session fs http https jquery node-telegram-login path request serve-favicon telegraf unique-filename
+
+Pasos creación de aplicación (incompleto)
+
+- Funcionalidades que se piden
+    - WEB
+        - Menú público
+            - Info proyecto
+            - Listado Incidencias
+            - Mapa de Incidencias
+            - Login a través de Telegram
+        - Menú privado
+            - Edición de Incidencias
+            - Borrado de Incidencias
+            - Edición de Perfil
+            - Cancelación y borrado de cuenta (borrará todos los datos e incidencias fotos, etc..)
+            - Ver mis datos de Telegram
+
+    - TELEGRAM
+        - Info
+        - Alta de Incidencias
+        - Listado de Incidencias
+        - Consulta de méteo por coordenadas
+        - Noticias de El Pais (RSS)
+        - Incidencias cercanas a mi (radio de 500m)
+
+- Base de datos MongoDB
+    Colección: Usuarios
+        nombre, apellidos, telegram, email, solucionar(s/n), notificar (s/n), incidencias[{foto,latitud,longitud,texto_incidencia,resuelta(s/n),texto_resolucion}]
+
+    - En la config. de la aplicación tendremos un usuario admin que será el que podrá asignar el privilegio de "solucionar" incidencias a otros usuarios.
+
+
+Usuarios con privilegio "solucionar":"s"
+    - Los usuarios que tengan el privilegio de "solucionar", podrán marcar como resueltas las incidencias indicando el correspondiente texto_resolucion.
+
+    - Además podrán solucionar la incidencia desde el propio Bot de Telegram.

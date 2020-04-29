@@ -1,0 +1,67 @@
+<% layout('layout') -%>
+<% script("js/perfil.js")%>
+<div class="container-fluid">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <h1 class="mt-4"></h1>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <i class="fas fa-info fa-2x"></i> Mi Perfil
+                </div>
+
+                <div class="card-body">
+                    <h4 class="card-title text-center" id="username"><label
+                            id="usernameLabel"><%-session.cliente.username%></label></h4>
+                    <h5 class="card-text">Datos: </h5>
+
+
+                    <p class="card-text" id="nombre">Nombre: <label> <label
+                                id="nombreLabel"><%-session.cliente.first_name%></label> </label>
+                    </p>
+
+
+
+                    <p class="card-text" id="apellidos">Apellidos: <label><label
+                                id="apellidosLabel"><%-session.cliente.last_name%></label></label>
+                    </p>
+
+
+
+                    <p class="card-text" id="email">Email: <label><label id="emailLabel"><%-datos.email%></label></label>
+                    </p>
+
+
+
+                    <p class="card-text" id="idTelegram">ID: <label><label id="idTelegramLabel"><%-session.cliente.id%></label>
+                    </label>
+                    </p>
+
+
+
+                    <p class="card-text" id="notificaciones">Notificaciones:
+                        <% if(cliente.notificar == true){%>
+                        <label>
+                            <label id="notificacionesLabel">Si</label>
+                        </label>
+                        <%} else {%>
+                        <label>
+                            <label id="notificacionesLabel">No</label>
+                        </label>
+                        <% } %>
+                    </p>
+
+                </div>
+            </div>
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 class="card-title text-center">OPCIONES: </h4>
+                    <a class="btn btn-dark" id="btNegro" role="button" style="color: white;">Editar</a>
+                    <a class="btn btn-dark" id="btNegro2" role="button" style="color: white;">Confirmar</a>
+                    <a class="btn btn-danger" id="btRojo" href="/cancelarCuenta" role="button">CANCELAR CUENTA</a>
+                    <a class="btn btn-danger" id="btRojo2" role="button" style="color: white;">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

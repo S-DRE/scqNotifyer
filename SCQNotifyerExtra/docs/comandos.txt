@@ -1,0 +1,5 @@
+start - Bienvenidos al bot SCQNotifyerBot
+inicioincidencias - Comando para iniciar la inicioIncidencia
+finalizarincidencias - Comando para finalizar la incidencia
+registraragente - Comando para registrarse como agente de un ayuntamiento
+lugo - El mejor comando

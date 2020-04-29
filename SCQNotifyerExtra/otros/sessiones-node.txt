@@ -1,0 +1,7 @@
+  session= req.session;
+  
+  session.cliente={};
+  session.cliente.id=res.locals.telegram_user.id;
+  session.cliente.first_name=res.locals.telegram_user.first_name;
+  session.cliente.username=res.locals.telegram_user.username;
+  session.cliente.auth_date=res.locals.telegram_user.auth_date;

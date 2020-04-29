@@ -1,0 +1,82 @@
+<% layout('layout') -%>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+  integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+  crossorigin=""></script>
+<style>
+  #map {
+    width: auto;
+    height: 700px;
+    box-shadow: 5px 5px 5px #888;
+  }
+</style>
+
+<div class="container-fluid">
+  <h1 class="mt-4"></h1>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header text-center">
+          <i class="fas fa-globe-europe fa-2x"></i> Mapa con las últimas 10 incidencias registradas
+        </div>
+
+        <div class="card-body">
+          <h5 class="card-title text-center">Mapa de Incidencias</h5>
+          <div id='map'></div>
+          <script>
+            // 1 declaramos el mapa
+            var map = L.map('map').setView([43.318207, -8.3761782], 9);
+
+            // 2. declaramos el repositorio de mapas...
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, <a href="https://solarmobi.iessanclemente.net">SolarMobi</a>', maxZoom: 22
+            }).addTo(map);
+
+            // 3. Añadimos control de escala
+            L.control.scale().addTo(map);
+            // var marker = L.marker([43.318207, -8.3761782], { draggable: false }).addTo(map);
+            // marker.bindPopup("<b>Estación:</b> ULaboral <br/><b>Dirección:</b> Rua Salvador Allende s/n<br/><b>Centro al que pertenece:<br/></b> Universidade Laboral en Rua Salvador Allende s/n.<br/><br/><a target='_blank' href='https://solarmobi.iessanclemente.net'>Proxecto SolarMobi 2018-2019</a>.").openPopup();
+
+
+            console.log("Antes de coger el array de incidencias...");
+            // Cojo el array de incidencias
+            var arrayIncidencias = "";
+            arrayIncidencias = <%-JSON.stringify(incidencias)%>;
+            //  arrayIncidencias = arrayIncidencias.split("}").join("").split("/n").join("").split("{");
+
+            console.log("ARRAY DE INCIDENCIAS");
+            console.log(arrayIncidencias);
+
+            for (var i = 0; i < arrayIncidencias.length; i+=2) {
+              if (!(arrayIncidencias[i].resuelta)) {
+              console.log("INCIDENCIAS DE " + i);
+              console.log(arrayIncidencias[i]);
+
+              
+              var marker = L.marker([arrayIncidencias[i].latitud, arrayIncidencias[i].longitud], { draggable: false }).addTo(map);
+              var linkFoto = "<img src = '../descargas/" + arrayIncidencias[i].foto.split("descargas/")[1] + "' width = '150px' height = '100px'>"; 
+
+              console.log("Link de la foto: ");
+              console.log(linkFoto);
+
+              var fechaIncidencia = new Date(arrayIncidencias[i].fecha);
+              var resuelta;
+
+              /*
+              if(arrayIncidencias[i].resuelta) 
+                resuelta = "<p><h5 style = 'color: green;'>Resuelta</h5></p>";
+              else 
+              */
+              resuelta = "<p><h5 style = 'color: darkred;'>Pendiente de resolver</h5></p>";
+              
+              marker.bindPopup("<div style = 'text-align: center'><h6><strong>" + arrayIncidencias[i+1] + "</strong></h6><h5>" + arrayIncidencias[i].texto_inc + "</h5><p>" + fechaIncidencia + "</p>" + linkFoto + resuelta + "</div>").openPopup();
+              }
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

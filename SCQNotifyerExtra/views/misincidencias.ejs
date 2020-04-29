@@ -1,0 +1,63 @@
+<% layout('layout') -%>
+
+<div class="container-fluid">
+    <h1 class="mt-4"></h1>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header text-center">
+                    <i class="fas fa-info fa-2x"></i> Información del Proyecto
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title text-center">Mis Incidencias</h5>
+                    <!-- <p class="card-text">Mi listado de Incidencias:  </p> -->
+
+                    <% if(misIncidencias.length > 0) {%>
+                    <table class="table table-hover table-responsive-xl">
+                        <thead>
+                            <tr class="info">
+                                <th>Texto de la incidencia</th>
+                                <th>Fotografía</th>
+                                <th>Ubicación</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th>Opciones/Texto de resolución</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% for(var i = 0; i < misIncidencias.length; i++) {%>
+                            <tr>
+                                <td><%-misIncidencias[i].texto_inc%></td>
+                                <td><img src="../descargas/<%-misIncidencias[i].foto.split("descargas/")[1]%>"
+                                        width="325px" height="200px"></td>
+                                <td><%-misIncidencias[i].latitud%>, <%-misIncidencias[i].longitud%></td>
+                                <td><%-misIncidencias[i].fecha%></td>
+                                <td><% if(misIncidencias[i].resuelta) { %>
+                                    <p style="color: green;">Resuelta</p>
+                                <td>
+                                    <%-misIncidencias[i].texto_res%> 
+                                    <p>________________________</p> 
+                                    <p><a href = "/borrarIncidencias?id=<%-misIncidencias[i]._id%>" id="borrarLink">Borrar</a></p></td>
+                                </td>
+                                <% } else { %>
+                                <p style="color: darkred;">Pendiente de resolver</p>
+                                <td><a href = "/editarIncidencias?id=<%-misIncidencias[i]._id%>&texto_inc=<%-misIncidencias[i].texto_inc%>" id="editarLink">Editar</a> | <a href = "/borrarIncidencias?id=<%-misIncidencias[i]._id%>" id="borrarLink">Borrar</a></td>
+                                </td>
+                                <% } %>
+
+                            </tr>
+                            <%}%>
+                            
+                        
+                        </tbody>
+                    </table>
+                    <% } else { %>
+                        <p>No hay incidencias disponibles ahora mismo.</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

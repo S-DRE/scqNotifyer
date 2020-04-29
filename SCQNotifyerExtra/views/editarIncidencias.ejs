@@ -1,0 +1,26 @@
+<% layout('layout') -%>
+<% script("js/editarIncidencias.js")%>
+<br />
+<br />
+<div class="container" style="width: 100%; align-content: center;">
+    <form id="formularioEdicion" class="my-2 my-lg-0 text-center" style="align-content: center;"
+        enctype="multipart/form-data" method="post">
+
+        <h3>Editar incidencias</h3>
+
+        <div class="form-row mb-4" style="text-align: center;">
+            <p>Texto de la incidencia</p>
+            <textarea class="form-control" id="textoIncidencia" name="textoIncidencia" placeholder="<%-texto_inc%>"
+                maxlength="2000" required><%-texto_inc%></textarea>
+            
+            <!--
+            <div class="custom-file" style = "margin-top: 15px;">
+                <input type="file" id="inputFoto" name="inputFoto" class="custom-file-input"
+                    placeholder="Seleccionar archivo">
+                <label class="custom-file-label">Escoja una fotografía para su incidencia</label>
+            </div>
+            -->
+        </div>
+        <button class="btn btn-info my-4 btn-block" type="submit">Editar incidencia</button>
+    </form>
+</div>
